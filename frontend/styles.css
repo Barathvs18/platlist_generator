@@ -1,0 +1,151 @@
+*{
+    padding: 0;
+    margin: 0;
+
+}
+.wrapper {
+    margin-top: 10px;
+  height: 100vh;
+  display: flex;
+  justify-content: center; 
+  align-items: center;      
+  background-color: #f5f5f5; 
+   opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.wrapper.show{
+        opacity: 1;
+  transform: translateY(0);
+}
+h1{
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: rgba(100, 28, 28, 0.1) 0px 4px 12px;
+}
+.emoji {
+    padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  width: 30%;
+  height: 70%;
+  margin-top: 5px;
+
+
+
+
+}
+.emoji button{
+    margin: 10px;
+    padding: 30px;
+    font-size:xx-large ;
+    border-radius: 20px;
+}
+.emoji button:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.result{
+        
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    background-color: #fff;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 20px;
+    padding: 30px;
+
+}
+.result h2{
+    text-align: center;
+    margin-bottom: 10px;
+
+}
+.result button{
+    background: #868080;
+    padding: 20px;
+    border-radius: 10px;
+}
+.result img{
+    border:2px solid black ;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Mobile Devices (max width 600px) */
+@media (max-width: 600px) {
+  .emoji {
+    width: 90%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .emoji button {
+    padding: 20px;
+    font-size: 1.5rem;
+  }
+
+  .result {
+    padding: 20px;
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .result button {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .result img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Tablets (601px to 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .emoji {
+    width: 70%;
+    height: auto;
+  }
+
+  .emoji button {
+    padding: 25px;
+    font-size: 1.8rem;
+  }
+
+  .result {
+    width: 80%;
+    padding: 25px;
+  }
+
+  .result img {
+    width: 100%;
+  }
+}
+
+/* Large Screens (above 1024px) */
+@media (min-width: 1025px) {
+  .emoji {
+    width: 30%;
+    height: 70%;
+  }
+
+  .emoji button {
+    font-size: 2rem;
+    padding: 30px;
+  }
+
+  .result {
+    max-width: 500px;
+  }
+
+  .result img {
+    width: 100%;
+  }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8" />
+  <title>Playlist Generator</title>
+  <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body>
+  <h1>Pick your mood 🎧</h1>
+ <div class="wrapper">
+
+     <div class="emoji">
+   
+         <!-- Mood Emojis -->
+         <button class="emoji-button" onclick="generatePlaylist('😊')">😊</button>
+         <button class="emoji-button" onclick="generatePlaylist('😭')">😭</button>
+         <button class="emoji-button" onclick="generatePlaylist('😍')">😍</button>
+         <button class="emoji-button" onclick="generatePlaylist('😎')">😎</button>
+         <button class="emoji-button" onclick="generatePlaylist('💔')">💔</button>
+         <button class="emoji-button" onclick="generatePlaylist('🕺')">🕺</button>
+         <button class="emoji-button" onclick="generatePlaylist('🤩')">🤩</button>
+         <button class="emoji-button" onclick="generatePlaylist('😴')">😴</button>
+         <button class="emoji-button" onclick="generatePlaylist('🤯')">🤯</button>
+         <button class="emoji-button" onclick="generatePlaylist('🥳')">🥳</button>
+         <button class="emoji-button" onclick="generatePlaylist('😡')">😡</button>
+         <button class="emoji-button" onclick="generatePlaylist('😇')">😇</button>
+         <button class="emoji-button" onclick="generatePlaylist('😜')">😜</button>
+         <button class="emoji-button" onclick="generatePlaylist('🤗')">🤗</button>
+         <button class="emoji-button" onclick="generatePlaylist('😢')">😢</button>
+         <button class="emoji-button" onclick="generatePlaylist('🤤')">🤤</button>
+         <button class="emoji-button" onclick="generatePlaylist('🙃')">🙃</button>
+         <button class="emoji-button" onclick="generatePlaylist('😤')">😤</button>
+         <button class="emoji-button" onclick="generatePlaylist('😌')">😌</button>
+         <button class="emoji-button" onclick="generatePlaylist('😋')">😋</button>
+        </div>
+        <div id="playlistResult"  style="display: none;" class="result"></div>
+ </div>
+
+
+
+  <script>
+      window.onload = () => {
+    document.querySelector('.wrapper').classList.add('show');
+  };
+
+      async function generatePlaylist(emoji) {
+        document.querySelector(".emoji").style.display = "none";
+        document.querySelector('.result').style.display='flex';
+
+        try {
+          const res = await fetch(`http://localhost:3000/playlist/${encodeURIComponent(emoji)}`);
+          const data = await res.json();
+      
+          const div = document.getElementById("playlistResult");
+          if (res.ok) {
+            div.innerHTML = `
+              <h2>${data.name}</h2>
+              <button onclick="window.open('${data.url}', '_blank')">🎧 Open Spotify Playlist</button>
+              <button onclick="back()"> Back</button>
+
+
+              <img src="${data.image}" alt="Mood Image" width="300" />
+            `;
+          } else {
+            div.innerHTML = `<p style="color:red;">${data.message || "பாடல் பட்டியல் கிடைக்கவில்லை."}</p>`;
+          }
+        } catch (error) {
+          console.error(error);
+          document.getElementById("playlistResult").innerHTML = `<p style="color:red;">சேவை தோல்வியடைந்தது.</p>`;
+        }
+
+        
+      }
+      function back() {
+        document.querySelector('.result').style.display='none'
+        document.querySelector('.emoji').style.display='block' 
+      }
+  </script>
+
+</body>
+</html>
